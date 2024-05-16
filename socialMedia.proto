@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package socialMedia;
+
+// Define message for user data
+message User {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+  // Add more user-related fields as needed
+}
+
+// Define message for post data
+message Post {
+  string id = 1;
+  string userId = 2;
+  string content = 3;
+  // Add more post-related fields as needed
+}
+
+// Define message for comment data
+message Comment {
+  string id = 1;
+  string postId = 2;
+  string userId = 3;
+  string content = 4;
+  // Add more comment-related fields as needed
+}
+
+// Define service for user-related operations
+service UserService {
+  rpc GetUser(GetUserRequest) returns (User);
+  rpc CreateUser(CreateUserRequest) returns (User);
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message CreateUserRequest {
+  string username = 1;
+  string email = 2;
+  // Add more fields for user creation as needed
+}
+
+// Define service for post-related operations
+service PostService {
+  rpc GetPost(GetPostRequest) returns (Post);
+  rpc CreatePost(CreatePostRequest) returns (Post);
+  // Add more post-related RPC methods as needed
+}
+
+message GetPostRequest {
+  string id = 1;
+}
+
+message CreatePostRequest {
+  string userId = 1;
+  string content = 2;
+  // Add more fields for post creation as needed
+}
+
+// Define service for comment-related operations
+service CommentService {
+  rpc GetComment(GetCommentRequest) returns (Comment);
+  rpc CreateComment(CreateCommentRequest) returns (Comment);
+  // Add more comment-related RPC methods as needed
+}
+
+message GetCommentRequest {
+  string id = 1;
+}
+
+message CreateCommentRequest {
+  string postId = 1;
+  string userId = 2;
+  string content = 3;
+  // Add more fields for comment creation as needed
+}
